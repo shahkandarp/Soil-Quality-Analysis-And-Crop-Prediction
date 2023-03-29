@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Almost Final Testing</title>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  </head>
+  <body>
+    <input type="button" value="START" onclick="activate()" />
+    
+    <div id = 'output'></div>
+
+    {{prediction_text}}
+    <script>
+
+      let activate = async () => {
+        try {
+          document.getElementById('output').style.display = 'block'
+          document.getElementById('output').style.color = 'black'
+          document.getElementById('output').innerHTML = 'Please Wait Until you response is processed'
+          const response = await axios.post(`https://api.thingspeak.com/update?api_key=JOG2BMDFMWP2E2IH&field1=1`);
+
+          console.log(response)
+
+        } catch (errors) {
+          console.error(errors);
+        }
+
+        setTimeout(async()=>{
+          try{
+            const response = await axios.get(`http://localhost:5000/answer`);
+            document.getElementById('output').style.display = 'block'
+            document.getElementById('output').style.color = 'green'
+            document.getElementById('output').innerHTML = response.data.data
+            console.log(response.data.data)
+          }
+          catch(error){
+            console.log(error)
+          }
+        },5000)
+        setInterval(()=>{
+          document.getElementById('output').style.display = 'none'
+        },4000)
+      };
+    </script>
+  </body>
+</html>
