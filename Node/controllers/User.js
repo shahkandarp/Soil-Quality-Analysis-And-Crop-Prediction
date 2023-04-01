@@ -104,7 +104,6 @@ const getOutput = async (req,res) => {
   const {userId} = req.user
   const data = Data.find({userId}).sort({_id:-1}).limit(1)
   const answer = await data
-  console.log(answer)
   res.status(StatusCodes.OK).json({res:'Success',data:answer})
 }
 module.exports = {
