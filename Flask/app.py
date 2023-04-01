@@ -3,6 +3,8 @@ from flask import Flask, request, jsonify, render_template
 from flask_pymongo import PyMongo
 import pickle
 from flask_cors import CORS
+from datetime import datetime
+from pytz import timezone
 
 app = Flask(__name__)
 CORS(app)
@@ -58,7 +60,8 @@ def predict():
         else:
             stri+=','
     ans = db.mappings.find_one({'productId': json['productId']})
-    db.datas.insert_one({'N':json['N'],'P':json['P'],'K':json['K'],'temprature':json['temperature'],'humidity':json['humidity'],'userId':ans['userId'],'pH':json['ph'],'output':stri,'lat':json['lat'],'lng':json['lng']})
+    now = datetime.now(timezone('Asia/Kolkata'))
+    db.datas.insert_one({'N':json['N'],'P':json['P'],'K':json['K'],'temprature':json['temperature'],'humidity':json['humidity'],'userId':ans['userId'],'pH':json['ph'],'output':stri,'lat':json['lat'],'lng':json['lng'],'time':now})
     obj = {
         "res":"Success"
     }

@@ -43,9 +43,12 @@ const DataSchema = new mongoose.Schema({
   output:{
     type:String,
     default:''
+  },
+  time:{
+    type:String,
+    default:''
   }
-  
-});
+},{timestamps:true});
 
 
 module.exports = mongoose.model("Data", DataSchema);

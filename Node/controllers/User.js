@@ -83,7 +83,7 @@ const okButton = async (req,res) => {
 const productStatus = async (req,res) => {
   const {productId} = req.params
   if(!productId){
-    throw new UnauthenticatedError("Invalid Credentials");
+    throw new BadRequestError("Please Provide Product ID");
   }
   const mapping = await Mapping.findOne({productId})
   res.status(StatusCodes.OK).json({res:'Success',data:mapping})
@@ -92,7 +92,7 @@ const productStatus = async (req,res) => {
 const setMappingTo0 = async (req,res) => {
   const {productId} = req.params
   if(!productId){
-    throw new UnauthenticatedError("Invalid Credentials");
+    throw new BadRequestError("Please Provide Product ID");
   }
   const mapping = await Mapping.findOne({productId})
   mapping.isOn = false
@@ -102,9 +102,25 @@ const setMappingTo0 = async (req,res) => {
 
 const getOutput = async (req,res) => {
   const {userId} = req.user
+  const currtime = new Date()
+  currhour = currtime.getHours();
+  currminuite = currtime.getMinutes();
+  curryear = currtime.getHours();
+  currmonth = currtime.getMonth()+1;
+  currdate = currtime.getDate();
   const data = Data.find({userId}).sort({_id:-1}).limit(1)
   const answer = await data
-  res.status(StatusCodes.OK).json({res:'Success',data:answer})
+  const datatime = new Date(answer[0].time)
+  datahour = datatime.getHours()
+  dataminuite = datatime.getMinutes();
+  datayear = datatime.getHours();
+  datamonth = datatime.getMonth()+1;
+  datadate = datatime.getDate();
+  if(currhour == datahour && curryear == datayear && currmonth == datamonth && datadate == currdate && (Math.abs(currminuite - dataminuite) == 0 || Math.abs(currminuite - dataminuite) == 1)){
+    res.status(StatusCodes.OK).json({res:'Success',data:answer})
+  }
+  throw new BadRequestError('Please Make Sure your Device is Switched On Before Trying Again')
+  
 }
 module.exports = {
   registerUser,
