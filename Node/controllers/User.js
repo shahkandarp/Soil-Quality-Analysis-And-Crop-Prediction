@@ -102,13 +102,14 @@ const setMappingTo0 = async (req,res) => {
 
 const getOutput = async (req,res) => {
   const {userId} = req.user
+  const user = await Mapping.findOne({userId})
   const currtime = new Date()
   currhour = currtime.getHours();
   currminuite = currtime.getMinutes();
   curryear = currtime.getHours();
   currmonth = currtime.getMonth()+1;
   currdate = currtime.getDate();
-  const data = Data.find({userId}).sort({_id:-1}).limit(1)
+  const data = Data.find({productId:user.productId}).sort({_id:-1}).limit(1)
   const answer = await data
   const datatime = new Date(answer[0].time)
   datahour = datatime.getHours()

@@ -4,9 +4,9 @@ const jwt = require("jsonwebtoken");
 require("dotenv").config();
 
 const DataSchema = new mongoose.Schema({
-  userId:{
-    type:mongoose.Types.ObjectId,
-    ref:"User"
+  productId:{
+    type:String,
+    default:''
   },
   lat:{
     type:mongoose.Decimal128,

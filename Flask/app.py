@@ -59,9 +59,8 @@ def predict():
             stri+='.'
         else:
             stri+=','
-    ans = db.mappings.find_one({'productId': json['productId']})
     now = datetime.now(timezone('Asia/Kolkata'))
-    db.datas.insert_one({'N':json['N'],'P':json['P'],'K':json['K'],'temprature':json['temperature'],'humidity':json['humidity'],'userId':ans['userId'],'pH':json['ph'],'output':stri,'lat':json['lat'],'lng':json['lng'],'time':now})
+    db.datas.insert_one({'N':json['N'],'P':json['P'],'K':json['K'],'temprature':json['temperature'],'humidity':json['humidity'],'productId':json['productId'],'pH':json['ph'],'output':stri,'lat':json['lat'],'lng':json['lng'],'time':now})
     obj = {
         "res":"Success"
     }

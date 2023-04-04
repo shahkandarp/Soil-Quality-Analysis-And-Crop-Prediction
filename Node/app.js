@@ -1,6 +1,7 @@
 require("dotenv").config();
 require("express-async-errors");
 const { StatusCodes } = require("http-status-codes");
+const Data = require('./models/Data')
 
 // extra security packages
 const helmet = require("helmet");
