@@ -126,6 +126,13 @@ const getOutput = async (req,res) => {
   
   
 }
+
+const getUserData = async (req,res) => {
+  const {userId} = req.user
+  const user = await User.findOne({_id:userId})
+  res.status(StatusCodes.OK).json({res:'Success',data:user})
+}
+
 module.exports = {
   registerUser,
   loginUser,
@@ -133,5 +140,6 @@ module.exports = {
   okButton,
   productStatus,
   setMappingTo0,
-  getOutput
+  getOutput,
+  getUserData
 };
