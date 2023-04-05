@@ -106,21 +106,24 @@ const getOutput = async (req,res) => {
   const currtime = new Date()
   currhour = currtime.getHours();
   currminuite = currtime.getMinutes();
-  curryear = currtime.getHours();
+  curryear = currtime.getFullYear();
   currmonth = currtime.getMonth()+1;
   currdate = currtime.getDate();
   const data = Data.find({productId:user.productId}).sort({_id:-1}).limit(1)
   const answer = await data
-  const datatime = new Date(answer[0].time)
+  const datatime = new Date(answer[0]._id.getTimestamp())
   datahour = datatime.getHours()
   dataminuite = datatime.getMinutes();
-  datayear = datatime.getHours();
+  datayear = datatime.getFullYear();
   datamonth = datatime.getMonth()+1;
   datadate = datatime.getDate();
   if(currhour == datahour && curryear == datayear && currmonth == datamonth && datadate == currdate && (Math.abs(currminuite - dataminuite) == 0 || Math.abs(currminuite - dataminuite) == 1)){
     res.status(StatusCodes.OK).json({res:'Success',data:answer})
   }
-  throw new BadRequestError('Please Make Sure your Device is Switched On Before Trying Again')
+  else{
+    throw new BadRequestError('Please Make Sure your Device is Switched On Before Trying Again')
+  }
+  
   
 }
 module.exports = {
