@@ -130,7 +130,15 @@ const getOutput = async (req,res) => {
 const getUserData = async (req,res) => {
   const {userId} = req.user
   const user = await User.findOne({_id:userId})
-  res.status(StatusCodes.OK).json({res:'Success',data:user})
+  const mapping = await Mapping.findOne({userId})
+  var obj = {
+    productId:mapping.productId,
+    name:user.name,
+    email:user.email,
+    phoneno:user.phoneno,
+    Role:user.Role
+  }
+  res.status(StatusCodes.OK).json({res:'Success',data:obj})
 }
 
 module.exports = {
