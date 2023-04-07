@@ -99,7 +99,7 @@ const Display = () => {
             <button className='start' onClick={start}>Start</button>
             <p className='u-name'>Hello {data.name} 🙋‍♂️</p><br /><br />
             <div className="div-op">
-                <p id='output'>Click start Button</p>
+                <p id='output'>Click start Button !</p>
             </div>
 
         </div>
