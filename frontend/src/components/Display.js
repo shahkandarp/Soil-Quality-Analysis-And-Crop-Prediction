@@ -28,7 +28,7 @@ const Display = () => {
                 document.getElementById("output").innerHTML = `${error.response.data.msg}`
             }
 
-        }, 1000);
+        }, 2000);
     }
 
 

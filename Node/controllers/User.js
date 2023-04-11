@@ -117,7 +117,7 @@ const getOutput = async (req,res) => {
   datayear = datatime.getFullYear();
   datamonth = datatime.getMonth()+1;
   datadate = datatime.getDate();
-  if(currhour == datahour && curryear == datayear && currmonth == datamonth && datadate == currdate && (Math.abs(currminuite - dataminuite) == 0 || Math.abs(currminuite - dataminuite) == 1)){
+  if(currhour == datahour && curryear == datayear && currmonth == datamonth && datadate == currdate && (Math.abs(currminuite - dataminuite) == 0 || Math.abs(currminuite - dataminuite) == 1 || Math.abs(currminuite - dataminuite) == 2)){
     res.status(StatusCodes.OK).json({res:'Success',data:answer})
   }
   else{
