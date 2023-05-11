@@ -9,9 +9,8 @@ const Login = () => {
 
   const login = async (e) => {
     e.preventDefault()
-
     try {
-      const res = await axios.post("http://15.207.18.13:3001/api/v1/user/login", {
+      const res = await axios.post("http://15.207.68.117:3001/api/v1/user/login", {
         email, password
       })
       const data = await res.data;
@@ -26,6 +25,7 @@ const Login = () => {
       }
 
     } catch (error) {
+      console.log(error)
       if (error.response.data.res === 'error') {
         window.alert(error.response.data.msg)
       }

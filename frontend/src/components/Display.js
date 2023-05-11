@@ -14,7 +14,7 @@ const Display = () => {
             // document.getElementById("output").innerHTML="success"
             try {
 
-                const res = await axios.get('http://15.207.18.13:3001/api/v1/user/getoutput', {
+                const res = await axios.get('http://15.207.68.117:3001/api/v1/user/getoutput', {
                     headers: {
                         'Authorization': `Bearer ${token}`
                     }
@@ -35,7 +35,7 @@ const Display = () => {
     const start = async () => {
 
         try {
-            const res = await axios.get('http://15.207.18.13:3001/api/v1/user/okbutton', {
+            const res = await axios.get('http://15.207.68.117:3001/api/v1/user/okbutton', {
                 headers: {
                     'Authorization': `Bearer ${token}`
                 }
@@ -66,7 +66,7 @@ const Display = () => {
 
         try {
 
-            const res = await axios.get('http://15.207.18.13:3001/api/v1/user/getuserdata', {
+            const res = await axios.get('http://15.207.68.117:3001/api/v1/user/getuserdata', {
                 headers: {
                     'Authorization': `Bearer ${token}`
                 }
