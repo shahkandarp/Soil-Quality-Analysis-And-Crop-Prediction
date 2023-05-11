@@ -15,16 +15,8 @@ model = pickle.load(open('crop_model_changed.pkl', 'rb'))
 
 app.config['SECRET_KEY'] = 'a7ba1e2d324c1a4d4082ee9b30c2fe812306e9e8df29740c1cac765d033df351'
 
-@app.route('/',methods=['GET'])
-def send():
-    return render_template('index.html')
-
-
 @app.route('/predict', methods=['POST'])
 def predict():
-    '''
-    For rendering results on HTML GUI
-    '''
     int_features = []
     json = request.get_json()
     int_features.append(float(json['N']))
