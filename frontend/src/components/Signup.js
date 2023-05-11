@@ -20,7 +20,7 @@ const Signup = () => {
   const signup = async (e) => {
     e.preventDefault()
     try {
-      const res = await axios.post("http://15.207.18.13:3001/api/v1/user/register", {
+      const res = await axios.post("http://15.207.68.117:3001/api/v1/user/register", {
         productId, email, password, name, phoneno
       })
 

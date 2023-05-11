@@ -21,7 +21,7 @@ const Update = () => {
         e.preventDefault()
 
         try {
-            const res = await axios.post("http://15.207.18.13:3001/api/v1/user/update", {
+            const res = await axios.post("http://15.207.68.117:3001/api/v1/user/update", {
                 email, password, name, phoneno
             }, {
                 headers: {
